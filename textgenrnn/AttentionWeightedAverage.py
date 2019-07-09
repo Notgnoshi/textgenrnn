@@ -1,4 +1,4 @@
-from tensorflow.keras.engine import InputSpec, Layer
+from tensorflow.keras.layers import InputSpec, Layer
 from tensorflow.keras import backend as K
 from tensorflow.keras import initializers
 
@@ -23,7 +23,7 @@ class AttentionWeightedAverage(Layer):
         self.W = self.add_weight(shape=(input_shape[2], 1),
                                  name='{}_W'.format(self.name),
                                  initializer=self.init)
-        self.trainable_weights = [self.W]
+        self._trainable_weights = [self.W]
         super(AttentionWeightedAverage, self).build(input_shape)
 
     def call(self, x, mask=None):
